@@ -225,7 +225,7 @@ MainWindow::MainWindow(QWidget *parent)
 
         connect(&m_Client,&QMqttClient::connected,[=](){
             qDebug()<<"Mqtt Login OK!" ;
-            m_Client.subscribe(QMqttTopicFilter("/z03y/wt009/device"),0) ;
+            m_Client.subscribe(QMqttTopicFilter("qw9981"),0) ;
         }) ;
 
         connect(&m_Client,&QMqttClient::messageReceived,[=](const QByteArray &message){
@@ -254,10 +254,10 @@ MainWindow::MainWindow(QWidget *parent)
         QString strCPUSN = getCPUSerialNumber() ;
         qDebug()<< "CPU SerialNumber: " << strCPUSN;
 
-        m_Client.setHostname("www.zkeagle.com") ;
+        m_Client.setHostname("test.mosquitto.org") ;
         m_Client.setPort(1883) ;
-        m_Client.setUsername("zkeagle008") ;
-        m_Client.setPassword("zkeagle008") ;
+        m_Client.setUsername("") ;
+        m_Client.setPassword("") ;
         m_Client.connectToHost() ;
 
         {
