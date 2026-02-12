@@ -2,7 +2,7 @@ QT += core gui svg mqtt quick bluetooth sql network
 QT += multimedia
 QT += texttospeech
 
-include(D:\Air\QXlsx\QXlsx\QXlsx.pri)
+include(..\QXlsx\QXlsx.pri)
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,7 +17,7 @@ QMAKE_PROJECT_DEPTH = 0
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-INCLUDEPATH += D:\Air\QXlsx\QXlsx\header
+INCLUDEPATH += ..\QXlsx\header
 
 SOURCES += \
     QrCodeGenerator.cpp \

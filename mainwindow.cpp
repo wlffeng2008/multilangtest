@@ -122,12 +122,11 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowIcon(QIcon(":/audio.png")) ;
     setIconSize(QSize(32,32)) ;
 
-
     QXlsx::Document xlsx;
     xlsx.write("A1", "Hello");  // 写入字符串
     xlsx.write("B1", 42);       // 写入整数
     xlsx.write("C1", QDateTime::currentDateTime()); // 写入日期时间
-    xlsx.saveAs("test.xlsx");   // 保存文件[1,5](@ref)。
+    xlsx.saveAs("D:\\test.xlsx");   // 保存文件[1,5](@ref)。
 
 
     QMap<QString,int>TM ;
@@ -570,12 +569,12 @@ void MainWindow::on_pushButtonFull_clicked()
     FullScrDialog dlg ;
     dlg.exec() ;
 }
-/*
+
 void create_xml(const char* xmlPath)
 {
     std::cout << "\ncreate_xml:" << xmlPath << std::endl;
     //【】构造一个xml文档类
-    XMLDocument doc;
+    tinyxml2::XMLDocument doc;
     //【】操作文档相关接口
     //创建与此文档关联的新声明。对象的内存由文档管理。
     //如果'text'参数为null，则使用标准声明:
@@ -627,7 +626,7 @@ void parse_xml(const char* xmlPath)
 {
     std::cout << "\nparse_xml:" << xmlPath << std::endl;
     //【】构造一个xml文档类
-    XMLDocument doc;
+    tinyxml2::XMLDocument doc;
     //【】读取文件
     //从磁盘加载XML文件。成功返回XML_SUCCESS（0），或者返回errorID。
     XMLError error = doc.LoadFile(xmlPath);
@@ -701,7 +700,7 @@ void create_xml2(const char* xmlPath)
 {
     std::cout << "\ncreate_xml2:" << xmlPath << std::endl;
     //【】构造一个xml文档类
-    XMLDocument doc;
+    tinyxml2::XMLDocument doc;
 
     //【】构建我们的xml数据结构
     XMLDeclaration* declaration = doc.NewDeclaration();
@@ -738,7 +737,7 @@ void parse_xml2(const char* xmlPath)
 {
     std::cout << "\nparse_xml2:" << xmlPath << std::endl;
     //【】构造一个xml文档类
-    XMLDocument doc;
+    tinyxml2::XMLDocument doc;
     //【】读取文件
     //从磁盘加载XML文件。成功返回XML_SUCCESS（0），或者返回errorID。
     XMLError error = doc.LoadFile(xmlPath);
@@ -769,7 +768,7 @@ void parse_xml2(const char* xmlPath)
     //【】遍历
     std::cout << "\ntraversal_element:" << std::endl;
     traversal_element(&doc, 0);
-}*/
+}
 
 void MainWindow::on_fontComboBox_currentFontChanged(const QFont &f)
 {

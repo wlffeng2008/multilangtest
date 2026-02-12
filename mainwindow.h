@@ -13,7 +13,9 @@
 #include "testdialog.h"
 
 #include <QtMqtt/QMqttClient>
-/*
+
+#define NO_MSXML_XMLDOCUMENT
+#include <windows.h>
 #include "tinyxml2.h"
 using namespace tinyxml2;
 
@@ -29,7 +31,7 @@ void traversal_element(XMLNode* node, int level);
 void create_xml2(const char* xmlPath);
 //解析预定义格式xml
 void parse_xml2(const char* xmlPath);
-*/
+/**/
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
