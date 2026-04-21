@@ -2,6 +2,82 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US">
 <context>
+    <name>DialogWebCef</name>
+    <message>
+        <location filename="DialogWebCef.ui" line="14"/>
+        <source>QCefview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DialogWebCef.ui" line="46"/>
+        <source>URL:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DialogWebCef.ui" line="60"/>
+        <source>后退</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DialogWebCef.ui" line="67"/>
+        <source>前进</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DialogWebCef.ui" line="74"/>
+        <source>刷新</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DialogWebCef.ui" line="81"/>
+        <source>Go</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DialogWebCef.ui" line="88"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DialogWebengine</name>
+    <message>
+        <location filename="DialogWebengine.ui" line="14"/>
+        <source>QWebEngineView</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DialogWebengine.ui" line="46"/>
+        <source>URL:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DialogWebengine.ui" line="60"/>
+        <source>后退</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DialogWebengine.ui" line="67"/>
+        <source>前进</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DialogWebengine.ui" line="74"/>
+        <source>刷新</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DialogWebengine.ui" line="81"/>
+        <source>Go</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DialogWebengine.ui" line="88"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FullScrDialog</name>
     <message>
         <location filename="fullscrdialog.ui" line="14"/>
@@ -27,125 +103,147 @@
         <translation>Main Title</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="30"/>
-        <location filename="mainwindow.ui" line="153"/>
+        <location filename="mainwindow.ui" line="211"/>
+        <location filename="mainwindow.ui" line="218"/>
         <source>English</source>
         <translation>英语</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="46"/>
-        <location filename="mainwindow.ui" line="166"/>
+        <location filename="mainwindow.ui" line="238"/>
+        <location filename="mainwindow.ui" line="245"/>
         <source>简体中文</source>
         <translation>Simple Chinese</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="59"/>
+        <location filename="mainwindow.ui" line="254"/>
         <source>我爱中国</source>
         <translation>I love China</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="72"/>
+        <location filename="mainwindow.ui" line="27"/>
         <source>/z03y/wt009/device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="75"/>
-        <location filename="mainwindow.ui" line="227"/>
-        <location filename="mainwindow.ui" line="259"/>
+        <location filename="mainwindow.ui" line="30"/>
+        <location filename="mainwindow.ui" line="74"/>
+        <location filename="mainwindow.ui" line="106"/>
         <source>我是一个学生</source>
         <translation>I&apos;m a student</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="88"/>
+        <location filename="mainwindow.ui" line="261"/>
         <source>另一个世界</source>
         <translation>Another world</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="101"/>
+        <location filename="mainwindow.ui" line="268"/>
         <source>继续测试</source>
         <translation>To be continued</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="127"/>
         <source>测试对话框</source>
-        <translation>A Testing Dialog</translation>
+        <translation type="vanished">A Testing Dialog</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="179"/>
+        <location filename="mainwindow.ui" line="333"/>
         <source>Startup with System</source>
         <translation>开机自启</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="195"/>
+        <location filename="mainwindow.ui" line="340"/>
+        <source>12345678</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="350"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/audio.png&quot;/ height=&quot;12px&quot; style=&quot;vertical-align:middle&quot;&gt;中央&lt;span style=&quot; font-size:20pt; font-weight:700;&quot;&gt;人民&lt;/span&gt;广播电台，&lt;span style=&quot; text-decoration: underline; color:#ff2600;&quot;&gt;新闻直播&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="240"/>
+        <location filename="mainwindow.ui" line="87"/>
         <source>Topic:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Topic</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="256"/>
+        <location filename="mainwindow.ui" line="103"/>
         <source>Hello,MQTT!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="272"/>
+        <location filename="mainwindow.ui" line="119"/>
         <source>text:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="288"/>
+        <location filename="mainwindow.ui" line="135"/>
         <source>发送</source>
+        <translation type="unfinished">Send</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="296"/>
+        <source>MessageBox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="301"/>
+        <location filename="mainwindow.ui" line="303"/>
+        <source>播发器</source>
+        <translation type="unfinished">Player</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="310"/>
         <source>全屏测试</source>
+        <translation type="unfinished">Full Screen</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="317"/>
+        <source>QCefView</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="314"/>
-        <source>PushButtonXXX</source>
+        <location filename="mainwindow.ui" line="324"/>
+        <source>QWebEngineView</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="327"/>
+        <location filename="mainwindow.ui" line="148"/>
         <source>QrCode:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">QR Code</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="168"/>
-        <location filename="mainwindow.cpp" line="509"/>
+        <location filename="mainwindow.cpp" line="174"/>
+        <location filename="mainwindow.cpp" line="516"/>
         <source>关于</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="169"/>
-        <location filename="mainwindow.cpp" line="510"/>
+        <location filename="mainwindow.cpp" line="175"/>
+        <location filename="mainwindow.cpp" line="517"/>
         <source>退出</source>
         <translation>Exit</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="177"/>
-        <location filename="mainwindow.cpp" line="508"/>
+        <location filename="mainwindow.cpp" line="183"/>
+        <location filename="mainwindow.cpp" line="515"/>
         <source>我的托盘测试</source>
         <translation>System Tray.Testing</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="159"/>
-        <location filename="mainwindow.cpp" line="507"/>
-        <source>中央人民广播电台</source>
-        <translation>China Center Radio of People</translation>
+        <location filename="mainwindow.cpp" line="514"/>
+        <source>中央人民广播电台 </source>
+        <translation>China Center Radio Station</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="532"/>
+        <source>中央人民广播电台</source>
+        <translation type="vanished">China Center Radio of People</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="539"/>
         <source>点击了 确定 按钮</source>
         <translation>the OK Button Clicked</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="532"/>
+        <location filename="mainwindow.cpp" line="539"/>
         <source>点击了 取消 按钮</source>
         <translation>The Cancel Button Clicked</translation>
     </message>

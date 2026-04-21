@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "fullscrdialog.h"
+#include "DialogWebCef.h"
 #include "zint.h"
 
 
@@ -24,11 +25,14 @@
 #include <QProgressBar>
 #include <QMessageBox>
 #include <QMap>
+#include <QDir>
 
 #include <QBluetoothDeviceDiscoveryAgent>
 #include <QBluetoothLocalDevice>
 #include <QLayout>
 #include <QVBoxLayout>
+
+#include <DialogWebengine.h>
 
 #include "xlsxcellrange.h"
 #include "xlsxchart.h"
@@ -119,8 +123,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setWindowIcon(QIcon(":/audio.png")) ;
-    setIconSize(QSize(32,32)) ;
+    setWindowIcon(QIcon(":/audio.png"));
+    setIconSize(QSize(32,32));
 
     QXlsx::Document xlsx;
     xlsx.write("A1", "Hello");  // 写入字符串
@@ -128,26 +132,31 @@ MainWindow::MainWindow(QWidget *parent)
     xlsx.write("C1", QDateTime::currentDateTime()); // 写入日期时间
     xlsx.saveAs("D:\\test.xlsx");   // 保存文件[1,5](@ref)。
 
+    QMap<QString,int>TM;
 
-    QMap<QString,int>TM ;
-
-    TM["韦立峰"]=11120 ;
+    TM["韦立峰"]=11120;
     TM["15"]=60;
     if(TM.contains("韦立峰"))
-        qDebug() << TM["韦立峰"] ;
+        qDebug() << TM["韦立峰"];
 
-    qDebug() << TM["国家008"] ;
+    qDebug() << TM["国家008"];
+
+    QDir Path(QApplication::applicationDirPath() + "/WebSnap/");
+    if(!Path.exists()) Path.mkdir(Path.path());
 
     connect(ui->pushButton,&QPushButton::clicked,this,[this](){
-        bool bLoad = m_pTranslator->load(":/multilangtest_zh_CN") ;
+        bool bLoad = m_pTranslator->load(":/multilangtest_zh_CN");
         ui->radioButton_2->setChecked(true);
     }) ;
 
     ui->pushButtonEnglish->setStyleSheet("QPushButton{border:2px solid rgb(0, 253, 155);border-radius:6px;background-color:red;color:white;}");
     connect(ui->pushButtonEnglish,&QPushButton::clicked,this,[this](){
-        bool bLoad = m_pTranslator->load(":/multilangtest_en") ;
+        bool bLoad = m_pTranslator->load(":/multilangtest_en");
         ui->radioButton->setChecked(true);
     }) ;
+    QTimer::singleShot(1000,this,[=]{
+        ui->pushButton->clicked();
+    });
 
     // 为所有按钮设置手型光标
     QList<QPushButton*> allButtons = findChildren<QPushButton*>();
@@ -155,22 +164,20 @@ MainWindow::MainWindow(QWidget *parent)
         button->setCursor(Qt::PointingHandCursor);
     }
 
-    ui->label_4->setText(tr("中央人民广播电台")  + QT_VERSION_STR);
-
-    m_pTestDlg = new TestDialog(this) ;
+    m_pTestDlg = new TestDialog(this);
 
     ui->radioButton->setChecked(true);
 
-    m_pTray = new QSystemTrayIcon(this) ;
-    m_pMenu = new QMenu(this) ;
+    m_pTray = new QSystemTrayIcon(this);
+    m_pMenu = new QMenu(this);
 
-    pActAbout = new QAction(tr("关于")) ;
-    pActExit = new QAction(tr("退出")) ;
-    m_pMenu->addAction(pActAbout) ;
-    m_pMenu->addAction(pActExit) ;
+    pActAbout = new QAction(tr("关于"));
+    pActExit = new QAction(tr("退出"));
+    m_pMenu->addAction(pActAbout);
+    m_pMenu->addAction(pActExit);
 
     connect(pActExit,&QAction::triggered,this,[this](){
-        close() ;
+        close();
     });
 
     m_pTray->setToolTip(tr("我的托盘测试"));
@@ -192,13 +199,14 @@ MainWindow::MainWindow(QWidget *parent)
         ui->labelQrCode->setPixmap(QPixmap::fromImage(B)) ;
     });
 
-    ui->lineEditQrText->setText("Hello, 美丽中国-Beautiful World!");
+    QString strNow = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+    ui->lineEditQrText->setText(QString("美丽中国-Beautiful World! ") + strNow);
 
     //create_xml("D:\\xml1.xml") ;
     //create_xml2("D:\\xml2.xml") ;
 
     {
-        const char *lpszText = "860001000003000503844" ;
+        const char *lpszText = "860001000003000503844";
         struct zint_symbol *symbol = ZBarcode_Create();
         if (symbol != NULL)
         {
@@ -232,13 +240,13 @@ MainWindow::MainWindow(QWidget *parent)
         }) ;
 
         connect(ui->pushButtonSend,&QPushButton::clicked,[=](){
-            QString strText = ui->lineEditMqText->text() ;
-            QString strTopic = ui->lineEditTopic->text() ;
+            QString strText = ui->lineEditMqText->text();
+            QString strTopic = ui->lineEditTopic->text();
 
             QJsonObject jData;
-            jData["text"] = strText ;
-            jData["time"] = time(nullptr) ;
-            QJsonDocument jDoc(jData) ;
+            jData["text"] = strText;
+            jData["time"] = time(nullptr);
+            QJsonDocument jDoc(jData);
 
             // QMqttPublishProperties properties ;
             // properties.setContentType("text/plain");
@@ -248,16 +256,16 @@ MainWindow::MainWindow(QWidget *parent)
             m_Client.publish(QMqttTopicName(strTopic),QByteArray(jDoc.toJson(QJsonDocument::JsonFormat::Compact)),0,false) ;
         }) ;
 
-        QString strHDSN = getHardDiskSerialNumber() ;
+        QString strHDSN = getHardDiskSerialNumber();
         qDebug()<< "HardDisk SerialNumber: " << strHDSN;
         QString strCPUSN = getCPUSerialNumber() ;
         qDebug()<< "CPU SerialNumber: " << strCPUSN;
 
-        m_Client.setHostname("test.mosquitto.org") ;
-        m_Client.setPort(1883) ;
-        m_Client.setUsername("") ;
-        m_Client.setPassword("") ;
-        m_Client.connectToHost() ;
+        m_Client.setHostname("test.mosquitto.org");
+        m_Client.setPort(1883);
+        m_Client.setUsername("");
+        m_Client.setPassword("");
+        m_Client.connectToHost();
 
         {
             QString pluginsPath = QCoreApplication::applicationDirPath() + "/plugins/sqldrivers";
@@ -283,7 +291,7 @@ MainWindow::MainWindow(QWidget *parent)
             }
             else
             {
-                qDebug()<< db.lastError() ;
+                qDebug()<< db.lastError();
             }
         }
 
@@ -451,17 +459,16 @@ MainWindow::MainWindow(QWidget *parent)
         }
     });
 
-    QVBoxLayout *pVLay= new QVBoxLayout(this) ;
-    ui->scrollAreaWidgetContents->setLayout(pVLay) ;
-//
+    QVBoxLayout *pVLay= new QVBoxLayout(this);
+    ui->scrollAreaWidgetContents->setLayout(pVLay);
 
     QCursor A(Qt::PointingHandCursor);
     for (int i = 0; i < 80; ++i) {
         QPushButton *button = new QPushButton(QString("Button %1").arg(i + 1),this);
-        button->setMaximumWidth(200) ;
-        button->setMinimumHeight(30) ;
-        // button->setFixedSize(150,25) ;
-        button->setCursor(A) ;
+        button->setMaximumWidth(200);
+        button->setMinimumHeight(30);
+        // button->setFixedSize(150,25);
+        button->setCursor(A);
 
         ui->scrollAreaWidgetContents->layout()->addWidget(button);
     }
@@ -503,13 +510,13 @@ void MainWindow::changeEvent(QEvent *pEvt)
     {
         ui->retranslateUi(this);
 
-        ui->label_4->setText(tr("中央人民广播电台"));
+        ui->label_4->setText(tr("中央人民广播电台 ")  + QT_VERSION_STR);
         m_pTray->setToolTip(tr("我的托盘测试"));
-        pActAbout->setText(tr("关于")) ;
-        pActExit->setText(tr("退出")) ;
+        pActAbout->setText(tr("关于"));
+        pActExit->setText(tr("退出"));
     }
 
-    QWidget::changeEvent(pEvt) ;
+    QWidget::changeEvent(pEvt);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
@@ -791,5 +798,19 @@ void MainWindow::on_pushButton_3_clicked()
     box.setWindowTitle("关于");
     box.setIcon(QMessageBox::Information);
     box.exec();
+}
+
+
+void MainWindow::on_pushButtonCefview_clicked()
+{
+    static DialogWebCef dlg(this);
+    dlg.show();
+}
+
+
+void MainWindow::on_pushButtonWebEngine_clicked()
+{
+    static DialogWebengine dlg(this);
+    dlg.show();
 }
 

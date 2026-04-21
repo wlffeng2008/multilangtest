@@ -1,10 +1,13 @@
 QT += core gui svg mqtt quick bluetooth sql network
 QT += multimedia
 QT += texttospeech
-
-include(..\QXlsx\QXlsx.pri)
+QT += webenginewidgets webenginecore
+QT += websockets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+include(..\QXlsx\QXlsx.pri)
+INCLUDEPATH += ..\QXlsx\header
 
 TARGET = multilangtest
 CONFIG += c++17
@@ -13,14 +16,22 @@ CONFIG += c++17
 QMAKE_TARGET_PRODUCT = multilangtest
 QMAKE_PROJECT_DEPTH = 0
 
+DESTDIR = $$PWD/bin
+
+INCLUDEPATH += $$PWD/ceflib/
+LIBS += $$PWD/ceflib/*.lib
+
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-INCLUDEPATH += ..\QXlsx\header
 
 SOURCES += \
+    CefViewWidget.cpp \
+    DialogWebCef.cpp \
+    DialogWebengine.cpp \
     QrCodeGenerator.cpp \
+    easywebview.cpp \
     fullscrdialog.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -29,6 +40,10 @@ SOURCES += \
     tinyxml2.cpp
 
 HEADERS += \
+    CefViewWidget.h \
+    DialogWebCef.h \
+    DialogWebengine.h \
+    easywebview.h \
     fullscrdialog.h \
     mainwindow.h \
     qrcodegen.h \
@@ -36,6 +51,8 @@ HEADERS += \
     tinyxml2.h
 
 FORMS += \
+    DialogWebCef.ui \
+    DialogWebengine.ui \
     fullscrdialog.ui \
     mainwindow.ui \
     testdialog.ui
