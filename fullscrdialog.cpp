@@ -8,7 +8,7 @@ FullScrDialog::FullScrDialog(QWidget *parent)
     ui->setupUi(this);
     setWindowFlags(Qt::Dialog|Qt::FramelessWindowHint);
     connect(ui->pushButton,&QPushButton::clicked,[=]{close();});
-    showFullScreen() ;
+    showFullScreen();
 }
 
 FullScrDialog::~FullScrDialog()

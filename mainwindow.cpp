@@ -268,7 +268,7 @@ MainWindow::MainWindow(QWidget *parent)
         m_Client.connectToHost();
 
         {
-            QString pluginsPath = QCoreApplication::applicationDirPath() + "/plugins/sqldrivers";
+            QString pluginsPath = QCoreApplication::applicationDirPath() + "/sqldrivers";
             QDir pluginsDir(pluginsPath);
             if (!pluginsDir.exists())
             {
@@ -279,11 +279,14 @@ MainWindow::MainWindow(QWidget *parent)
             qDebug()<<"support drivers:"<<QSqlDatabase::drivers();
 
             QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+            qDebug() << db ;
+
             db.setHostName("www.zkeagle.com");
             db.setPort(3306);
             db.setDatabaseName("zkeagledb");
             db.setUserName("zkeagle");
             db.setPassword("12345678");
+            db.open();
 
             if (db.open())
             {
@@ -291,7 +294,7 @@ MainWindow::MainWindow(QWidget *parent)
             }
             else
             {
-                qDebug()<< db.lastError();
+                qDebug()<< db.lastError().text();
             }
         }
 
