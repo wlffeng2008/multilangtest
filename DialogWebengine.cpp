@@ -16,6 +16,7 @@ DialogWebengine::DialogWebengine(QWidget *parent)
 
     QStringList Urls={
         "http://localhost:5173/",
+        "https://hub.akkogear.com/",
         "https://www.163.com",
         "https://www.baidu.com",
         "https://www.zkeagle.com",
@@ -46,6 +47,7 @@ DialogWebengine::DialogWebengine(QWidget *parent)
     settings->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, true);
     settings->setAttribute(QWebEngineSettings::AllowRunningInsecureContent, true);
 
+
     connect(ui->pushButton_1,&QPushButton::clicked,this,[=]{
         m_pView->back();
     });
@@ -66,15 +68,32 @@ DialogWebengine::DialogWebengine(QWidget *parent)
         m_pView->grab().save(strFile);
     });
 
-
     connect(ui->comboBox,&QComboBox::activated,this,[=](int index){
         ui->pushButton_4->click();
+    });
+
+    //m_pView->setAttribute(Qt::a);
+
+    connect(m_pView->page(), &QWebEnginePage::permissionRequested,
+            this, [=](QWebEnginePermission permission){
+        permission.grant();
+        // 判断权限类型：WebHID 硬件设备访问权限
+        // if (permission.permissionType() == QWebEnginePermission::PermissionType::Hid)
+        // {
+        //     // 直接授予权限，网页「连接设备」按钮即可弹出设备选择框
+        //     qDebug() << "已授予网页WebHID设备访问权限";
+        // }
+        // else
+        // {
+        //     // 其他权限（定位、摄像头等）默认拒绝
+        //     permission.deny();
+        // }
     });
 
     QTimer::singleShot(10,this,[=]{
     });
     ui->comboBox->activated(0);
-    resize(1280,850);
+    resize(1600,1050);
 }
 
 DialogWebengine::~DialogWebengine()

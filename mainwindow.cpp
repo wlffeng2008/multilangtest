@@ -123,7 +123,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setWindowIcon(QIcon(":/audio.png"));
+    //setWindowIcon(QIcon(":/audio.png"));
     setIconSize(QSize(32,32));
 
     QXlsx::Document xlsx;

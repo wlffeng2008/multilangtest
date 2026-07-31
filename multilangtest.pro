@@ -1,7 +1,7 @@
 QT += core gui svg mqtt quick bluetooth sql network
 QT += multimedia
 QT += texttospeech
-QT += webenginewidgets webenginecore
+QT += webenginewidgets webenginecore webchannel
 QT += websockets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -17,6 +17,7 @@ QMAKE_TARGET_PRODUCT = multilangtest
 QMAKE_PROJECT_DEPTH = 0
 
 DESTDIR = $$PWD/bin
+RC_ICONS = multimoney.ico
 
 INCLUDEPATH += $$PWD/ceflib/
 LIBS += $$PWD/ceflib/*.lib

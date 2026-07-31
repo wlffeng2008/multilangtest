@@ -19,6 +19,7 @@ DialogWebCef::DialogWebCef(QWidget *parent)
 
     QStringList Urls={
         "https://www.163.com",
+        "https://hub.akkogear.com/",
         "https://www.baidu.com",
         "https://www.zkeagle.com",
         "https://demo.hubx.pro/keyboard/",
@@ -64,7 +65,7 @@ DialogWebCef::DialogWebCef(QWidget *parent)
         grab().save(strFile);
     });
 
-    resize(1280,850);
+    resize(1600,1050);
 }
 
 DialogWebCef::~DialogWebCef()

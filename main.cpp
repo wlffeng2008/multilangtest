@@ -8,15 +8,44 @@
 #include <QStandardPaths>
 
 #include <QWebEngineProfile>
+#include <QWebEngineSettings>
 
 #include <QCefView.h>
 #include <QCefConfig.h>
 #include <QCefContext.h>
+#include <QMessageLogContext>
+
+
+// 全局保存原始消息处理函数指针
+static QtMessageHandler g_originalHandler = nullptr;
+
+// 自定义过滤处理器
+void customLogHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    // 过滤GCM废弃端点报错
+    if (msg.contains("google_apis\\gcm") && msg.contains("DEPRECATED_ENDPOINT"))
+    {
+        return; // 直接丢弃这条日志，不输出
+    }
+
+    if(msg.startsWith("js:"))
+        return;
+
+    // 其他日志交给原始处理器输出
+    if (g_originalHandler)
+    {
+        g_originalHandler(type, context, msg);
+    }
+}
 
 int main(int argc, char *argv[])
 {
 
     QApplication a(argc, argv);
+
+
+    // 先保存系统默认日志处理器
+    g_originalHandler = qInstallMessageHandler(customLogHandler);
 
 
     // 设置中文语言环境
@@ -93,6 +122,10 @@ int main(int argc, char *argv[])
     config.addCommandLineSwitch("disable-web-security");
 
     QCefContext cefContext(&a, argc, argv, &config);
+
+
+    QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
+    //QWebEngineSettings::setAttribute(QWebEngineSettings::AllowRunningInsecureContent, true);
 
     MainWindow w;
     w.setTranslater(&translatorC);
